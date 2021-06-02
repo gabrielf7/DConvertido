@@ -9,6 +9,10 @@ const startConverter = () => {
     const errorMessage = document.querySelector('#errorMessage')
     const swapButton = document.querySelector('#swapButton')
 
+    import('./module.js')
+      .then(module => module.funExibir("Server Save"))
+      .catch(err => console.log(err.message));
+
     const setCurrencies = () =>{
         fromName.innerText = fromCurrency.options[fromCurrency.selectedIndex].dataset.name
         toName.innerText = toCurrency.options[toCurrency.selectedIndex].dataset.name
