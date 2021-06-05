@@ -15,7 +15,7 @@ const startConverter = () => {
   }
 
   const convert = (value) => {
-    import('../js/pd-criacional/module.js')
+    import('../js/pd-criacional/index.cliente.js')
       .then(module => {
         let controller = new module.Builder({
           value: value,
