@@ -1,20 +1,17 @@
-export class Builder {
-  constructor(props) {
-    this.value = props.value;
-    this.toValue = props.toValue;
-    this.fromCurrency = props.fromCurrency;
-    this.toCurrency = props.toCurrency;
-  }
+import { BuilderConcreto } from './classes/BuilderConcreto.js';
+import { Diretor } from './classes/BuilderDiretor.js';
 
-  convert() {
-    errorMessage.style.display = 'none';
-    fetch(`https://free.currconv.com/api/v7/convert?apiKey=d4cf3228112bfb5a29f5&q=${this.fromCurrency.value}_${this.toCurrency.value}&compact=y`)
-      .then((response) => response.json())
-      .then((rate) => { 
-        this.toValue.value = (
-          this.value * rate[`${this.fromCurrency.value}_${this.toCurrency.value}`].val
-        ).toFixed(8) 
-      })
-      .catch((e) => console.log(e));
-  }
+function BuilderCliente(diretor, value, toValue, fromCurrency, toCurrency) {
+  var builder = new BuilderConcreto(value, toValue, fromCurrency, toCurrency);
+  diretor.setBuilder(builder);
+
+  diretor.buildConversao();
+  builder.getProduto().ConverterValores();
+}
+
+export function executarBuilderCliente(
+  value, toValue, fromCurrency, toCurrency
+) {
+  var diretor = new Diretor();
+  return BuilderCliente(diretor, value, toValue, fromCurrency, toCurrency);
 }
