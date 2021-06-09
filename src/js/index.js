@@ -15,18 +15,15 @@ const startConverter = () => {
   }
 
   const convert = (value) => {
-    import('../js/pd-criacional/index.cliente.js')
+    errorMessage.style.display = 'none';
+    import('./pd-criacional/index.cliente.js')
       .then(module => {
-        let controller = new module.Builder({
-          value: value,
-          toValue: toValue,
-          fromCurrency: fromCurrency,
-          toCurrency: toCurrency
-        });
-        
-        return controller.convert();
+        let exe = module.executarBuilderCliente(
+          value, toValue, fromCurrency, toCurrency
+        );
+        return exe;
       })
-      .catch(err => console.log(err.message));
+      .catch(err => console.log("Erro: " + err.message));
   }
 
   const handleChange = () => {
@@ -50,7 +47,7 @@ const startConverter = () => {
   fromValue.oninput = handleChange
   swapButton.onclick = swapCurrencies
 
-  fetch('https://free.currconv.com/api/v7/currencies?apiKey=d4cf3228112bfb5a29f5')
+  fetch('https://free.currconv.com/api/v7/currencies?apiKey=3ccabbdf79b2847ab9fe')
     .then((response) => response.json())
     .then(({ results }) => {
       const frag = document.createDocumentFragment()
@@ -68,8 +65,7 @@ const startConverter = () => {
         }
       }
       return [frag, frag.cloneNode(true)]
-    }
-    )
+    })
     .then((frags) => {
       selectors.forEach((selector, key) => {
         selector.appendChild(frags[key])
