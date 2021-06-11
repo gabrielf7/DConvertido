@@ -11,28 +11,52 @@
 
   <body>
     <div id='container'>
+      <div class="sobrePar">
+        <h4 id="nameInfoTexto01"></h4>
+        <p id="infoTexto01"></p>
+      </div>
+    </div>
+
+    <div id='container'>
       <h1 id='nameLogo'>DConvertido</h1>
 
+      <label for="fromValue">Quantidade</label>
+      
+      <div style="flex-direction: row;">
+        <input type='text' id='fromValue' maxlength="9" class='valueInput'>
+        <button id='swapButton'>Trocar</button>
+      </div>
+      
       <div id='fromForm' class='formContainer'>
         <p id='fromName'></p>
         <p id='errorMessage'>A entrada deve ser um número</p>
         <form class='info'>
           <select class='currencySelector' id='fromCurrency'></select>
-          <input type='text' id='fromValue' maxlength="9" class='valueInput'>
         </form>
       </div>
-
-      <button id='swapButton'>Trocar</button>
+      
 
       <div id='toForm' class='formContainer'>
-        <p id='toName'></p>
+        <p id='toName' value='toName'></p>
         <form class='info'>
           <select class='currencySelector' id='toCurrency'></select>
-          <input type='text' id='toValue' class='valueInput' disabled>
         </form>
+        
+      </div>
+      
+      <button id='convertButton'>Converter</button>
 
+      <div>
+        <input type='text' id='toValue' class='valueInput' disabled>
       </div>
     </div>
+    <div id='container'>
+      <div class="sobrePar">
+        <h4 id="nameInfoTexto02"></h4>
+        <p id="infoTexto02"></p>
+      </div>
+    </div>
+
     <script type="module" src="../src/js/index.js"></script>
   </body>
 
